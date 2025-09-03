@@ -3,19 +3,20 @@
   stdenv,
   fetchurl,
   jre,
+  which,
   makeWrapper,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "mill";
-  version = "0.12.14";
+  version = "1.0.4";
 
   src = fetchurl {
     url = "https://repo1.maven.org/maven2/com/lihaoyi/mill-dist/${finalAttrs.version}/mill-dist-${finalAttrs.version}.exe";
-    hash = "sha256-2MyufFcgKH/bxVB83qXNESByAdgbzhyIHqAr36Bb9o0=";
+    hash = "sha256-lOZ3aVOmbKKkTHBJShBu+brW3WrO0MnnDs9oXOmXGHA=";
   };
 
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [ makeWrapper which ];
 
   dontUnpack = true;
   dontConfigure = true;
@@ -56,6 +57,7 @@ stdenv.mkDerivation (finalAttrs: {
     maintainers = with maintainers; [
       scalavision
       zenithal
+      felix-hedenstrom
     ];
     platforms = lib.platforms.all;
   };
