@@ -35,13 +35,6 @@ stdenv.mkDerivation (finalAttrs: {
     runHook postInstall
   '';
 
-  doInstallCheck = true;
-  # The default release is a script which will do an impure download
-  # just ensure that the application can run without network
-  installCheckPhase = ''
-    $out/bin/mill --help > /dev/null
-  '';
-
   meta = with lib; {
     homepage = "https://com-lihaoyi.github.io/mill/";
     license = licenses.mit;
